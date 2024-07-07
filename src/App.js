@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import CustomizationForm from './CustomizationForm';
+import LabelPreview from './LabelPreview';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [customization, setCustomization] = useState({
+    text: '',
+    color: '#000000',
+    fontSize: 16,
+    fontFamily: 'Arial',
+    image: null,
+    background: null
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Design your Label</h1>
+      <div className="label-designer">
+        <CustomizationForm onUpdate={setCustomization} />
+        <LabelPreview customization={customization} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
